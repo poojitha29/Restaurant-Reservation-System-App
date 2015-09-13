@@ -1,0 +1,188 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Restaurant: Reservation</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <link href='http://fonts.googleapis.com/css?family=Cookie' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+</head>
+
+<body>
+
+<aside class="sidebar-left">
+
+    <a class="company-logo" href="../index.html"><img src="../images/logo.png" alt="logo"align="center"/></a>
+
+    <div class="sidebar-links">
+        <a class="" href="../index.html">Home</a>
+        <a class="selected " href="../views/reservation.html">Reservation</a>
+        <a class=" " href="../views/contact.html">Contact</a>
+        <a class="" href="../views/owner.html">Owner</a>
+    </div>
+</aside>
+
+<div class="main-content">
+
+    <div class="content">
+
+
+        <h1>Reservation</h1>
+        <h2 class="underline"></h2>
+        <section>
+
+
+
+
+            <div class="container" id="home">
+                <ul class="nav nav-tabs nav-justified">
+                    <li class="active"><a href="#tab-reserve" data-toggle="tab">Make a Reservation</a>
+                    </li>
+                    <li><a href="#tab-modify" data-toggle="tab">Modify or Cancel </a>
+                    </li>
+                </ul>
+                <p class="transparent">Fill in following informtion</p>
+                <div id="content" class="tab-content">
+                    <div class="tab-pane active" id="tab-reserve">
+                        <section class="contact content" >
+                            <form class="form-horizontal">
+                                <div class="form-group">
+                                    <label for="inputName" class="col-sm-2 control-label">Full Name</label>
+                                    <div class="col-sm-10">
+                                        <input type="email" class="form-control" id="inputName" placeholder="Enter your Full name">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputSize" class="col-sm-2 control-label" required>Party size</label>
+                                    <div class="col-sm-10">
+                                        <input type="number" class="form-control" id="inputSize" placeholder="# of Guests">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputDate" class="col-sm-2 control-label" required>Date</label>
+                                    <div class="col-sm-10">
+                                        <input type="date" class="form-control" id="inputDate" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputTime" class="col-sm-2 control-label" required>Time</label>
+                                    <div class="col-sm-10">
+                                        <input type="time" class="form-control" id="inputTime"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputPhone" class="col-sm-2 control-label">Phone no.</label>
+                                    <div class="col-sm-10">
+                                        <input type="email" class="form-control" id="inputPhone" placeholder="Enter your Phone number.">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputEmail" class="col-sm-2 control-label" required>Email</label>
+                                    <div class="col-sm-10">
+                                        <input type="email" class="form-control" id="inputEmail" placeholder="Enter you Email(example@domain.com)">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputNote" class="col-sm-2 control-label" required>Comments</label>
+                                    <div class="col-sm-10">
+                                        <textarea type="text" class="form-control" id="inputNote" placeholder="Comments/ notes (Optional)"></textarea>
+                                    </div>
+                                </div>
+
+
+
+
+                                <div class="form-group">
+                                    <div class="col-sm-offset-1 col-sm-8">
+                                        <button type="submit" class="btn btn-primary">Send</button>
+                                    </div>
+                                </div>
+                            </form>
+
+
+                        </section>
+                    </div>
+                    <div class="tab-pane" id="tab-modify">
+                        <section class="contact content" >
+                            <form class="form-horizontal">
+                                <div class="form-group">
+                                    <label for="inputCode" class="col-sm-2 control-label">Confirmation Code</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="inputCode" placeholder="Enter your Confirmation code (Required)" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="inputEmail" class="col-sm-2 control-label">Email</label>
+                                    <div class="col-sm-10">
+                                        <input type="email" class="form-control" id="inputEmail" placeholder="Enter you Email(example@domain.com)">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputDate" class="col-sm-2 control-label">Date</label>
+                                    <div class="col-sm-10">
+                                        <input type="date" class="form-control" id="inputDate" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputTime" class="col-sm-2 control-label">Time</label>
+                                    <div class="col-sm-10">
+                                        <input type="time" class="form-control" id="inputTime"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputSize" class="col-sm-2 control-label">Party Size</label>
+                                    <div class="col-sm-10">
+                                        <input type="number" class="form-control" id="inputSize" placeholder="# of Guests">
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+
+                                <div class="col-sm-offset-1 col-sm-8">
+                                    <button type="submit" class="btn btn-primary">Modify</button>
+                                    <button type="submit" class="btn btn-primary">Cancel</button>
+                                </div>
+                            </div>
+                                <div class="form-group">
+                                    <div class="col-sm-offset-1 col-sm-8">
+
+                                    </div>
+                                </div>
+
+                            </form>
+
+
+                        </section>
+                </div>
+            </div>
+        </section>
+
+
+
+    </div>
+
+</div>
+
+<div class="footer">
+    Copyright © 2015
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</body>
+
+</html>
