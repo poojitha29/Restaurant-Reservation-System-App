@@ -7,6 +7,7 @@ import io.swagger.annotations.ApiResponses;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
@@ -17,8 +18,10 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response.Status;
 
 import rrs.egen.dao.ReservationDAO;
+import rrs.egen.dao.TableDAO;
 import rrs.egen.exception.AppException;
 import rrs.egen.model.Reservation;
+import rrs.egen.model.Table;
 
 @Path("/reservations")
 @Api(tags = {"/reservations"})
@@ -96,8 +99,7 @@ public class ReservationsController {
 						@ApiResponse(code = 500, message = "Internal Server Error") 
 						}
 				)
-		public void deleteReservationByCustomer(@PathParam("confCode") int confCode,
-				@PathParam("confirmation-code") int ccode) {
+		public void deleteReservationByCustomer(@PathParam("confCode") int confCode) {
 			ReservationDAO dao = new ReservationDAO();
 			try {
 				dao.deleteReservationByCustomer(confCode);
@@ -108,7 +110,34 @@ public class ReservationsController {
 			}
 		}
 
-		
+		@GET
+		@Path("/{confCode}")
+		@Produces(MediaType.APPLICATION_JSON)
+		@ApiOperation(
+				value = "Find a Table",
+				notes = "Finds a Table with a particular ID in the Database"
+				)
+		@ApiResponses(
+				value={
+						@ApiResponse(code=200, message = "Success"),
+						@ApiResponse(code=404, message = "Not Found"),
+						@ApiResponse(code=500, message = "Internal Server Error")
+				}
+				)
+		public Reservation getByID(@PathParam("confCode") int confCode){
+			Reservation reserv;
+			
+			try {
+				ReservationDAO dao = new ReservationDAO();
+				reserv = dao.getReservationById(confCode);
+				System.out.println(reserv);
+			} catch (AppException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				throw new WebApplicationException(Status.INTERNAL_SERVER_ERROR);
+			}
+			return reserv;
+		}
 		
 		
 		

@@ -11,7 +11,7 @@ public class Reservation {
 	private int confirmationcode;
 	private int partysize;
 	private Date date;
-	private Time time;
+	private String time;
 	private String fullname; 
 	private int phone; 
 
@@ -65,10 +65,10 @@ public class Reservation {
 	public void setTableId(int tableId) {
 		this.tableId = tableId;
 	}
-	public Time getTime() {
+	public String getTime() {
 		return time;
 	}
-	public void setTime(Time time) {
+	public void setTime(String time) {
 		this.time = time;
 	}
 	public String getFullname() {

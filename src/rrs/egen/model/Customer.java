@@ -3,7 +3,7 @@ package rrs.egen.model;
 public class Customer {
 	private int customerId; 
 	private String fullname; 
-	private int phone; 
+	private double phone; 
 	private String email;
 	private String comments;
 	
@@ -25,10 +25,10 @@ public class Customer {
 	public void setFullname(String fullname) {
 		this.fullname = fullname;
 	}
-	public int getPhone() {
+	public double getPhone() {
 		return phone;
 	}
-	public void setPhone(int phone) {
+	public void setPhone(double phone) {
 		this.phone = phone;
 	}
 	public String getEmail() {

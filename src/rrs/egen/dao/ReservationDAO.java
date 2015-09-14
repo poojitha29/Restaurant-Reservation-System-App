@@ -11,10 +11,8 @@ import java.util.Random;
 import rrs.egen.exception.AppException;
 import rrs.egen.model.Customer;
 import rrs.egen.model.Reservation;
+import rrs.egen.model.Table;
 import rrs.egen.util.DBUtils;
-
-
-
 
 
 public class ReservationDAO {
@@ -37,7 +35,7 @@ public class ReservationDAO {
 		ResultSet rs = null;
 
 		try {
-			ps = conn.prepareStatement("SELECT reservations.partysize, reservations.date, reservations.time, reservations.email, reservations.comments, reservations.confirmationcode FROM customers inner join reservations where reservations.email = customers.email;");
+			ps = conn.prepareStatement("SELECT reservations.partysize, reservations.date, reservations.time, reservations.email, reservations.comments, reservations.confirmationcode, reservations.status, reservations.tableId FROM customers inner join reservations where reservations.email = customers.email;");
 			rs = ps.executeQuery();
 
 			while(rs.next()){
@@ -45,12 +43,12 @@ public class ReservationDAO {
 				
 				reserv.setPartysize(rs.getInt("partysize"));
 				reserv.setDate(rs.getDate("date"));
-				reserv.setTime(rs.getTime("time"));
+				reserv.setTime(rs.getString("time"));
 				reserv.setEmail(rs.getString("email"));
 				reserv.setComments(rs.getString("comments"));
 				reserv.setConfirmationcode(rs.getInt("confirmationcode"));
-					
-				
+				reserv.setStatus(rs.getString("status"));
+				reserv.setTableId(rs.getInt("tableId"));
 				
 				reservation.add(reserv);
 			}
@@ -65,7 +63,42 @@ public class ReservationDAO {
 
 		return reservation;
 	}
+	
+	public Reservation getReservationById(int id) throws AppException{
 
+		
+		Connection conn = DBUtils.connect();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		Reservation reserv = new Reservation();
+
+		try {
+			ps = conn.prepareStatement("SELECT reservations.partysize, reservations.date, reservations.time, reservations.email, reservations.comments, reservations.confirmationcode, reservations.status, reservations.tableId FROM customers inner join reservations where reservations.confirmationcode = ? AND reservations.email = customers.email");
+			ps.setInt(1, id);
+
+			rs = ps.executeQuery();
+
+			if(rs.next()){
+				
+				reserv.setPartysize(rs.getInt("partysize"));
+				reserv.setDate(rs.getDate("date"));
+				reserv.setTime(rs.getString("time"));
+				reserv.setEmail(rs.getString("email"));
+				reserv.setComments(rs.getString("comments"));
+				reserv.setConfirmationcode(rs.getInt("confirmationcode"));
+				reserv.setStatus(rs.getString("status"));
+				reserv.setTableId(rs.getInt("tableId"));
+				
+
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw new AppException(e.getMessage(),e.getCause());
+		}
+		
+		return reserv;
+	}
 	
 	public Reservation createReservationByCustomer(Reservation reserv) throws AppException {
 		Connection conn = DBUtils.connect();
@@ -79,7 +112,7 @@ public class ReservationDAO {
 			//partysize,date,time,email,comments,confirmationcode
 			ps.setInt(1,reserv.getPartysize());
 			ps.setDate(2, reserv.getDate());
-			ps.setTime(3, reserv.getTime());
+			ps.setString(3, reserv.getTime());
 			ps.setString(4, reserv.getEmail());
 			ps.setString(5, reserv.getComments());
 			
@@ -118,7 +151,7 @@ public class ReservationDAO {
 			//partysize,date,time,email,comments,confirmationcode
 			ps.setInt(1,reserv.getPartysize());
 			ps.setDate(2, reserv.getDate());
-			ps.setTime(3, reserv.getTime());
+			ps.setString(3, reserv.getTime());
 			ps.setString(4, reserv.getEmail());
 			ps.setString(5, reserv.getComments());
 			
@@ -160,7 +193,7 @@ public class ReservationDAO {
 
 			ps.setInt(1, reserv.getPartysize());
 			ps.setDate(2, reserv.getDate());
-			ps.setTime(3, reserv.getTime());
+			ps.setString(3, reserv.getTime());
 			ps.setString(4, reserv.getComments());
 			ps.setInt(5, confCode);
 			

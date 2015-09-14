@@ -10,7 +10,6 @@
 
     <title>Restaurant: Home</title>
 
-	<link rel='shortcut icon' href='../images/food-app.ico' type='image/x-icon'/ >
     <link rel="stylesheet" href="css/style.css">
 
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
@@ -18,9 +17,10 @@
 
     <link rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
+    <script type="text/ng-template" id="search-template">
+        <input type="search" ng-model = "reservationsVm.search" class = "form-control" placeholder = "Enter text to search..."/>
+    </script>
 
 </head>
 
@@ -28,7 +28,7 @@
 
 <aside class="sidebar-left">
 
-    <a class="company-logo" href="/index.html"><img src="images/logo.png" alt="logo"align="center"/></a>
+    <a class="company-logo" href="index.html"><img src="images/logo.png" alt="logo" /></a>
 
     <div class="sidebar-links">
         <a class="link-blue selected" href="index.html">Home</a>
@@ -102,6 +102,7 @@
 </div>
 
 
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
 
 </body>
 

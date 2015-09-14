@@ -10,6 +10,9 @@ html{
 body{
     background:#ece7e1 url("../images/background.jpg"); /* SITE BG */
     background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
     -webkit-background-size: cover;
     font:14px/1.5 Arial, Helvetica, sans-serif;
     padding:auto;
@@ -409,3 +412,4 @@ p.transparent{
 #table3:hover,#table10:hover{
     background-color: #b91c37;
 }
+

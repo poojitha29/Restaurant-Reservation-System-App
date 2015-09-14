@@ -1,0 +1,25 @@
+<table class="table table-hover">
+    <thead>
+    <tr>
+        
+        <th>Confirmation Code</th>
+        <th>email</th>
+        <th>Status</th>
+        <th>Size</th>
+        <th>Table #</th>
+        <th>Edit</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat=" reservation in reservationsVm.reservations | filter:reservationsVm.search " >
+       
+        <td>{{reservation.confirmationcode}}</td>
+        <td>{{reservation.email}}</td>
+        <td>{{reservation.status}}</td>
+        <td>{{reservation.partysize}}</td>
+        <td>{{reservation.tableId}}</td>
+        <td> <button type="button" class="btn btn-primary btn-sm">Edit</button></td>
+    </tr>
+
+    </tbody>
+</table>

@@ -26,8 +26,9 @@ public class CustomerDAO {
 
 			while(rs.next()){
 				Customer cust = new Customer();
+				
 				cust.setFullname(rs.getString("fullname"));
-				cust.setPhone(rs.getInt("phone"));
+				cust.setPhone(rs.getDouble("phone"));
 				cust.setEmail(rs.getString("email"));
 				
 				customer.add(cust);
@@ -55,7 +56,7 @@ public class CustomerDAO {
 		try {
 			ps = conn.prepareStatement("INSERT INTO `customerQueries`(`fullname`,`phone`,`email`,`comments`) VALUES (?,?,?,?)",PreparedStatement.RETURN_GENERATED_KEYS);
 			ps.setString(1,cust.getFullname());
-			ps.setInt(2, cust.getPhone());
+			ps.setDouble(2, cust.getPhone());
 			ps.setString(3, cust.getEmail());
 			ps.setString(4, cust.getComments());
 						
