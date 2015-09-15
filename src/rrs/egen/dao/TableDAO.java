@@ -31,10 +31,7 @@ public class TableDAO {
 				Table tab = new Table();
 				tab.setTableId(rs.getInt("tableId"));
 				tab.setSeatingCapacity(rs.getInt("seatingCapacity"));
-				tab.setIsOccupied(rs.getBoolean("isOccupied"));
-				tab.setDate(rs.getDate("date"));
-				tab.setTime(rs.getTime("time"));
-				tab.setConfirmationcode(rs.getInt("confirmationcode"));
+				
 
 
 				table.add(tab);
@@ -67,10 +64,6 @@ public class TableDAO {
 				tab = new Table();
 				tab.setTableId(rs.getInt("tableId"));
 				tab.setSeatingCapacity(rs.getInt("seatingCapacity"));
-				tab.setIsOccupied(rs.getBoolean("isOccupied"));
-				tab.setDate(rs.getDate("date"));
-				tab.setTime(rs.getTime("time"));
-				tab.setConfirmationcode(rs.getInt("confirmationcode"));
 				
 
 			}
@@ -90,16 +83,11 @@ public class TableDAO {
 		ResultSet rs = null;
 
 		try {
-			ps = conn.prepareStatement("UPDATE tables SET seatingCapacity=?, isOccupied= ?, "
-					+ "date =?,time = ?, confirmationCode = ? WHERE tableId=?");
+			ps = conn.prepareStatement("UPDATE tables SET seatingCapacity=? WHERE tableId=?");
 
 			ps.setInt(1,tab.getSeatingCapacity());
-			ps.setBoolean(2,tab.getIsOccupied());
-			ps.setDate(3, tab.getDate());
-			ps.setTime(4, tab.getTime());
-			ps.setInt(5, tab.getConfirmationcode());
 			
-			ps.setInt(6, id);
+			ps.setInt(2, id);
 
 			ps.executeUpdate();
 

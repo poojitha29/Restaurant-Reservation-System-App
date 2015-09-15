@@ -2,7 +2,6 @@ package rrs.egen.model;
 
 
 import java.sql.Date;
-import java.sql.Time;
 
 
 public class Reservation {
@@ -10,10 +9,10 @@ public class Reservation {
 
 	private int confirmationcode;
 	private int partysize;
-	private Date date;
+	private String date;
 	private String time;
 	private String fullname; 
-	private int phone; 
+	private double phone; 
 
 	private String comments;
 	private int tableId;
@@ -46,11 +45,11 @@ public class Reservation {
 	public void setPartysize(int partysize) {
 		this.partysize = partysize;
 	}
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
-	public void setDate(Date date2) {
-		this.date = date2;
+	public void setDate(String date) {
+		this.date = date;
 	}
 
 	public String getComments() {
@@ -77,10 +76,10 @@ public class Reservation {
 	public void setFullname(String fullname) {
 		this.fullname = fullname;
 	}
-	public int getPhone() {
+	public double getPhone() {
 		return phone;
 	}
-	public void setPhone(int phone) {
+	public void setPhone(double phone) {
 		this.phone = phone;
 	}
 

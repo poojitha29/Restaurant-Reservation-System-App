@@ -30,12 +30,11 @@ public class ReservationsController {
 	
 	
 	@POST
+	@Path("/new")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	@ApiOperation(
-			value = "Create new Reservation", 
-			notes = "Creates anew entry in the reservation table for a particular Customer"
-			)
+	@ApiOperation(value = "Create new Reservation", 
+					notes = "Creates anew entry in the reservation table for a particular Customer")
 	@ApiResponses(
 			value = { 
 					@ApiResponse(code = 200, message = "Success"),
@@ -45,13 +44,13 @@ public class ReservationsController {
 	public Reservation createReservationByCust(Reservation reserv) {
 		ReservationDAO dao = new ReservationDAO();
 		try {
-			dao.createReservationByCustomer(reserv);
+			
+			reserv = dao.createReservationByCustomer(reserv);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			throw new WebApplicationException(Status.INTERNAL_SERVER_ERROR);
 		}
-
+			
 		return reserv;
 	}
 
@@ -75,6 +74,7 @@ public class ReservationsController {
 		public Reservation updateReservationByConfCode( @PathParam("confCode") int confCode, Reservation reserv) {
 			ReservationDAO dao = new ReservationDAO();
 			try {
+				System.out.println(reserv);
 				reserv = dao.updateReservationByCustomer(confCode, reserv);
 			} catch (AppException e) {
 				// TODO Auto-generated catch block

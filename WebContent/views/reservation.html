@@ -33,18 +33,11 @@
     </div>
 </aside>
 
-<div class="main-content" ng-controller="ReservationsController as reservationsVm">
-
+<div class="main-content" data-ng-controller="ReservationsController as reservationsVm">
     <div class="content">
-
-
         <h1>Reservation</h1>
         <h2 class="underline"></h2>
         <section>
-
-
-
-
             <div class="container" id="home">
                 <ul class="nav nav-tabs nav-justified">
                     <li class="active"><a href="#tab-reserve" data-toggle="tab">Make a Reservation</a>
@@ -52,27 +45,22 @@
                     <li><a href="#tab-modify" data-toggle="tab">Modify or Cancel </a>
                     </li>
                 </ul>
-                <p class="transparent">Fill in following informtion</p>
+                <p class="transparent">Fill in following information</p>
                 <div id="content" class="tab-content">
                     <div class="tab-pane active" id="tab-reserve">
                         <section class="contact content" >
-                            <div ng-include="'make-reservation.tmpl.html'"></div>
+                            <div data-ng-include="'make-reservation-customers.tmpl.html'"></div>
                         </section>
                     </div>
                     <div class="tab-pane" id="tab-modify">
                         <section class="contact content" >
-                            <div ng-include="'modify-reservation.tmpl.html'"></div>
-
+                            <div data-ng-include="'show-reservation-customer.tmpl.html'"></div>
                         </section>
-                </div>
-            </div>
+	                </div>
+	            </div>
             </div>
         </section>
-
-
-
     </div>
-
 </div>
 
 <div class="footer">

@@ -25,6 +25,7 @@ import javax.ws.rs.core.Response.Status;
 
 
 
+
 import rrs.egen.dao.OwnerDAO;
 import rrs.egen.dao.ReservationDAO;
 import rrs.egen.exception.AppException;
@@ -99,7 +100,7 @@ public class OwnerController {
 
 
 	@POST
-	@Path("/reservations")
+	@Path("/reservations/new")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	@ApiOperation(
@@ -116,6 +117,7 @@ public class OwnerController {
 		ReservationDAO dao = new ReservationDAO();
 		try {
 			reserv = dao.createReservationByOwner(reserv);
+			System.out.println( "inside Create reservation by owner Controller"+"\n"+reserv);
 		} catch (AppException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -1,0 +1,61 @@
+<div>
+<section>
+<form class="form-horizontal">
+    <div class="form-group">
+        <label for="inputCode" class="col-sm-2 control-label">Confirmation Code</label>
+        <div class="col-sm-10">
+            <input type="text" data-ng-model="reservationsVm.reservations.confirmationcode" class="form-control" id="inputCode" placeholder="Enter your Confirmation code (Required)" required>
+        </div>
+    </div>
+    
+    <div class="form-group">
+
+        <div class="col-sm-offset-1 col-sm-8">
+            <button type="submit" class="btn btn-primary" data-ng-click="reservationsVm.showReservationByConfCode()">Modify</button>
+             <button type="submit" class="btn btn-primary" data-ng-click="reservationsVm.modifyReservationByConfCode()">Delete</button>
+            <button type="submit" class="btn btn-primary" data-ng-click="reservationsVm.deleteReservationByConfCode()">Delete</button>
+        </div>
+    </div>
+
+
+</form>
+</section>
+<section ng-show="showReservation">
+ <div class="col-sm-3">
+ <ui >
+
+ <li>{{reservationsVm.reservation.confirmationcode}}</li>
+ <li>{{reservationsVm.reservation.date}}</li>
+ <li>{{reservationsVm.reservation.time}}</li>
+ <li>{{reservationsVm.reservation.partysize}}</li>
+ <li>{{reservationsVm.reservation.comments}}</li>
+ </ui>
+ </div>
+</section>
+ <section ng-show="modifyReservation">
+
+ <div class="col-sm-6">
+ 		
+		<div  data-ng-include="'modify-reservation-customers.tmpl.html'"></div></div>
+    </section>
+
+    <section ng-show="deleteMessage">
+
+        <h1>Reservation Deleted</h1>
+
+        <h2>Your Reservation with Confirmation Code is <strong>{{reservationsVm.reservations.confirmationcode}}</strong> is deleted.</h2>
+    </section>
+    <section ng-show="editConfirm">
+
+        <h1>Reservation edited</h1>
+         <ui >
+		<li>{{reservationsVm.reservation.confirmationcode}}</li>
+		 <li>{{reservationsVm.reservation.date}}</li>
+		 <li>{{reservationsVm.reservation.time}}</li>
+		 <li>{{reservationsVm.reservation.partysize}}</li>
+		 <li>{{reservationsVm.reservation.comments}}</li>
+		 </ui>
+        <h2>Your Confirmation Code is <strong>{{cusEditVm.reservation.reservationid}}</strong>.</h2>
+
+    </section>
+</div>
