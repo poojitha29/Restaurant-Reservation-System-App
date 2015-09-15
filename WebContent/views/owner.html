@@ -23,7 +23,7 @@
 
 <aside class="sidebar-left">
 
-    <a class="company-logo" href="../index.html"><img src="../images/logo.png" alt="logo"align="center"/></a>
+    <a class="company-logo" href="../index.html"><img src="../images/logo.png" alt="logo"/></a>
 
     <div class="sidebar-links">
         <a class="link-blue" href="../index.html">Home</a>
@@ -33,7 +33,7 @@
     </div>
 </aside>
 
-<div class="main-content">
+<div class="main-content" data-ng-controller="ReservationsController as reservationsVm">
 
     <div class="content">
 
@@ -42,7 +42,7 @@
         <h2 class="underline"></h2>
 
         <section class="contact content" >
- <div ng-include="'owner-login.tmpl.html'"></div>
+ 				<div ng-include="'owner-login.tmpl.html'"></div>
 
         </section>
 
@@ -59,8 +59,9 @@
 <script src="https://code.angularjs.org/1.4.4/angular.js"></script>
 <script src="https://code.angularjs.org/1.4.4/angular-messages.js"></script><script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-<script src="../app/app.js"></script>
-<script src="../app/services/reservation.service.js"></script>
+<script src="../app/controllers/owner-login.controller.js"></script>
+<script src="../app/services/owner-login.services.js"></script>
+
 
 </body>
 

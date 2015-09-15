@@ -29,7 +29,6 @@ import javax.ws.rs.core.Response.Status;
 import rrs.egen.dao.OwnerDAO;
 import rrs.egen.dao.ReservationDAO;
 import rrs.egen.exception.AppException;
-import rrs.egen.model.Customer;
 import rrs.egen.model.Owner;
 import rrs.egen.model.Reservation;
 
@@ -159,9 +158,9 @@ public class OwnerController {
 		}
 		return reserv;
 	}
-	
 
-	
+
+
 
 	@DELETE
 	@Path("/reservations/{reservId}")

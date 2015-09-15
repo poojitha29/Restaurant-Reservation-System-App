@@ -1,8 +1,5 @@
 package rrs.egen.model;
 
-import java.sql.Time;
-import java.sql.Date;
-
 public class Table {
  private int tableId;
  private int seatingCapacity;

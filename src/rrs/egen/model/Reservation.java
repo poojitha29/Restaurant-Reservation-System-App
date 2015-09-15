@@ -1,9 +1,6 @@
 package rrs.egen.model;
 
 
-import java.sql.Date;
-
-
 public class Reservation {
 	
 

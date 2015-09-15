@@ -14,16 +14,16 @@ import rrs.egen.util.DBUtils;
 
 
 public class ReservationDAO {
-	
-	
+
+
 	public static int randInt(int min, int max) {
 
-	    Random rand = new Random();
-	    int randomNum = rand.nextInt((max - min) + 1) + min;
-	    return randomNum;
+		Random rand = new Random();
+		int randomNum = rand.nextInt((max - min) + 1) + min;
+		return randomNum;
 	}
-	
-	
+
+
 	public List<Reservation> getAllReservations() throws AppException{
 
 		List<Reservation> reservation = new ArrayList<Reservation>();
@@ -38,7 +38,7 @@ public class ReservationDAO {
 
 			while(rs.next()){
 				Reservation reserv = new Reservation();
-				
+
 				reserv.setPartysize(rs.getInt("partysize"));
 				reserv.setDate(rs.getString("date"));
 				reserv.setTime(rs.getString("time"));
@@ -47,7 +47,7 @@ public class ReservationDAO {
 				reserv.setConfirmationcode(rs.getInt("confirmationcode"));
 				reserv.setStatus(rs.getString("status"));
 				reserv.setTableId(rs.getInt("tableId"));
-				
+
 				reservation.add(reserv);
 			}
 		} catch (SQLException e) {
@@ -61,10 +61,10 @@ public class ReservationDAO {
 
 		return reservation;
 	}
-	
+
 	public Reservation getReservationById(int id) throws AppException{
 
-		
+
 		Connection conn = DBUtils.connect();
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -77,7 +77,7 @@ public class ReservationDAO {
 			rs = ps.executeQuery();
 
 			if(rs.next()){
-				
+
 				reserv.setPartysize(rs.getInt("partysize"));
 				reserv.setDate(rs.getString("date"));
 				reserv.setTime(rs.getString("time"));
@@ -86,7 +86,7 @@ public class ReservationDAO {
 				reserv.setConfirmationcode(rs.getInt("confirmationcode"));
 				reserv.setStatus(rs.getString("status"));
 				reserv.setTableId(rs.getInt("tableId"));
-				
+
 
 			}
 		} catch (SQLException e) {
@@ -94,21 +94,21 @@ public class ReservationDAO {
 			e.printStackTrace();
 			throw new AppException(e.getMessage(),e.getCause());
 		}
-		
+
 		return reserv;
 	}
-	
+
 	public Reservation createReservationByCustomer(Reservation reserv) throws AppException {
 		Connection conn = DBUtils.connect();
 		PreparedStatement ps = null;
 		PreparedStatement ps1 = null;
 		ResultSet rs = null;
 		try {
-	
+
 			ps = conn.prepareStatement(	
 					"INSERT INTO reservations (date,time,email,partysize,comments,fullname,phone) VALUES (?,?,?,?,?,?,?)",PreparedStatement.RETURN_GENERATED_KEYS);
 			//partysize,date,time,email,comments,confirmationcode
-			
+
 			ps.setString(1, reserv.getDate());
 			ps.setString(2, reserv.getTime());
 			ps.setString(3, reserv.getEmail());
@@ -116,7 +116,7 @@ public class ReservationDAO {
 			ps.setString(5, reserv.getComments());
 			ps.setString(6, reserv.getFullname());
 			ps.setDouble(7, reserv.getPhone());
-			
+
 			ps.executeUpdate();
 			rs = ps.getGeneratedKeys();
 
@@ -124,22 +124,22 @@ public class ReservationDAO {
 			if (rs.next()) {
 				reserv.setConfirmationcode(rs.getInt(1));	
 			}
-			
-			
+
+
 			ps1 = conn.prepareStatement("INSERT INTO customers (fullname, phone, email) VALUES (?,?,?)");
 			ps1.setString(1, reserv.getFullname());
 			ps1.setDouble(2, reserv.getPhone());
 			ps1.setString(3, reserv.getEmail());
 			ps1.executeUpdate();
 
-			
-			
+
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			throw new AppException(e.getMessage(), e.getCause());
 		} 
-		 finally {
+		finally {
 			DBUtils.closeConnection(ps, rs, conn);
 		}
 
@@ -151,7 +151,7 @@ public class ReservationDAO {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		PreparedStatement ps1 = null;
-	
+
 		try {
 			System.out.println( "inside Create reservation by owner"+"\n"+reserv);
 			ps = conn.prepareStatement(	
@@ -162,25 +162,25 @@ public class ReservationDAO {
 			ps.setString(3, reserv.getTime());
 			ps.setString(4, reserv.getEmail());
 			ps.setString(5, reserv.getComments());
-				ps.setString(6, reserv.getFullname());
+			ps.setString(6, reserv.getFullname());
 			ps.setDouble(7, reserv.getPhone());;
-			
+
 			ps.executeUpdate();
 			rs = ps.getGeneratedKeys();
 
 			if (rs.next()) {
 				reserv.setConfirmationcode(rs.getInt(1));	
 			}
-			
-			
+
+
 			ps1 = conn.prepareStatement("INSERT INTO customers (fullname, phone, email) VALUES (?,?,?)");
 			ps1.setString(1, reserv.getFullname());
 			ps1.setDouble(2, reserv.getPhone());
 			ps1.setString(3, reserv.getEmail());
 			ps1.executeUpdate();
-			
-			
-			
+
+
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -194,14 +194,14 @@ public class ReservationDAO {
 	}
 
 
-	
+
 	public Reservation updateReservationByCustomer(int confCode, Reservation reserv) throws AppException {
 		Connection conn = DBUtils.connect();
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 
 		try {
-			
+
 			System.out.println("JAVA UPDATE DAO");
 			System.out.println(reserv);
 			ps = conn.prepareStatement(	"UPDATE reservations SET partysize=?, date = ?, time = ?, comments = ? WHERE confirmationCode = ?");
@@ -212,7 +212,7 @@ public class ReservationDAO {
 			ps.setString(4, reserv.getComments());
 			//ps.setInt(5, reserv.getConfirmationcode());
 			ps.setInt(5, confCode);
-			
+
 			ps.executeUpdate();
 
 		} catch (SQLException e) {
@@ -226,7 +226,7 @@ public class ReservationDAO {
 		return reserv;
 	}
 
-	
+
 	public Reservation updateReservationByOwnerOnly(int confCode, Reservation reserv) throws AppException {
 		Connection conn = DBUtils.connect();
 		PreparedStatement ps = null;
@@ -238,13 +238,13 @@ public class ReservationDAO {
 			ps.setInt(1, reserv.getTableId());
 			ps.setString(2, reserv.getStatus());
 			ps.setInt(3, confCode);
-			
+
 			ps.executeUpdate();
 
 		} 
 
-		
-		
+
+
 		catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -256,7 +256,7 @@ public class ReservationDAO {
 		return reserv;
 	}
 
-	
+
 	public void deleteReservationByCustomer( int confCode) throws AppException {
 		Connection conn = DBUtils.connect();
 		PreparedStatement ps = null;
@@ -264,7 +264,7 @@ public class ReservationDAO {
 
 		try {
 			ps = conn.prepareStatement("DELETE FROM reservations WHERE confirmationcode=?");
-			
+
 			ps.setInt(1, confCode);
 
 			ps.executeUpdate();
@@ -278,7 +278,7 @@ public class ReservationDAO {
 		}
 	}
 
-	
+
 	public void deleteReservationOwner(int condCode) throws AppException {
 		Connection conn = DBUtils.connect();
 		PreparedStatement ps = null;
@@ -287,7 +287,7 @@ public class ReservationDAO {
 		try {
 			ps = conn.prepareStatement("DELETE FROM reservations WHERE confirmationcode = ? ");
 			ps.setInt(1, condCode);
-			
+
 
 			ps.executeUpdate();
 
@@ -300,6 +300,6 @@ public class ReservationDAO {
 		}
 	}
 
-	
+
 
 }

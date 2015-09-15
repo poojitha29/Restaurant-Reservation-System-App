@@ -18,10 +18,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response.Status;
 
 import rrs.egen.dao.ReservationDAO;
-import rrs.egen.dao.TableDAO;
 import rrs.egen.exception.AppException;
 import rrs.egen.model.Reservation;
-import rrs.egen.model.Table;
 
 @Path("/reservations")
 @Api(tags = {"/reservations"})
