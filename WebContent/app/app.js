@@ -1,170 +1,98 @@
 (function(){
 	'use strict';
 
-	var app = angular.module('angularApp', []);
+	angular.module('angularApp', ['ngRoute','ngMessages','ui.router',
+	                              'ui.bootstrap',
+	                              'ui.router.tabs','ngCookies'])
+	.config(moduleConfig);
 
-	angular.module('angularApp').controller('ReservationsController', ReservationsControllerFn);
+	moduleConfig.$inject = ['$stateProvider','$urlRouterProvider'];
+	function moduleConfig($stateProvider,$urlRouterProvider) {
 
-	ReservationsControllerFn.$inject = ['$rootScope','reservationService'];
-	function ReservationsControllerFn($rootScope,reservationService) {
-		var reservationsVm = this;
-		$rootScope.showReservation = false;
-		$rootScope.deleteMessage = false;  
-		$rootScope.confirmation = false;
-		$rootScope.editRow=false;
-		$rootScope.makeReservation=true;
-		$rootScope.reservationsGrid = true;
-
-		reservationService.getReservations()
-		.then(function(result){
-			reservationsVm.reservations = result;
-		},function(error){
-			console.log("error");
-		});
-		reservationService.getCustomers()
-		.then(function(result){
-			reservationsVm.customers = result;
-		},function(error){
-			console.log("error");
-		});
-		var confCodeUpdateOwner = null;
-		reservationsVm.editResvnRow=function(confCode){
-			confCodeUpdateOwner = confCode;
-			console.log(confCode);
-			$rootScope.editRow = true;
-			$rootScope.reservationsGrid = false;
-		}
+		$urlRouterProvider.otherwise("/");
+		 
+		$stateProvider
+		.state('home',{
+			url:'/',
+			templateUrl: 'views/home.tmpl.html'
+		})
 		
-		reservationsVm.clear = function(){
-			reservationsVm.reservations.reservation = null;
-		}
-
-		
-		reservationsVm.getLoginCredentials= function(){
+		.state('reservation',{
+			url: '/reservation',
+			templateUrl: 'views/reservation.tmpl.html',
+			controller: 'ReservationsController',
+			controllerAs: 'reservationsVm'
+		})
+		.state('reservation.make',{
+			url: '/reservation.make',
+			templateUrl: 'views/make-reservation-customers.tmpl.html',
+			controller: 'CreateReservationController',
+			controllerAs: 'createReservationsVm'
 			
-			reservationService.getLoginCredentials()
-			.then(function(result){
-				console.log(result);
-				reservationsVm.credentials = result;
-			},function(error){
-				console.log("error");
-			});
-
-		
-		}
-		
-		reservationsVm.updateResvnStatus= function(){
-			//console.log("updateRegStatus");
+		})
+		.state('reservation.edit',{
+			url: '/reservation.edit',
+			templateUrl: 'views/show-reservations.tmpl.html',
+			controller: 'ReservationsController',
+			controllerAs: 'reservationsVm'
 			
-			console.log("Update registration owner"+confCodeUpdateOwner);
-			console.log("Update Data");
-			console.log(reservationsVm.reservations.reservation);
-			reservationService.updateRegStatusOwner(confCodeUpdateOwner, reservationsVm.reservations.reservation)
-			.then(function(data) {
-				console.log(data);
-				reservationsVm.reservation = data;
-				$rootScope.editRow=false;
-				$rootScope.reservationsGrid = true;
-			}, function(err) {
-				console.log(err);
-			});
+		})
+		.state('contact',{
+			url: '/contact',
+			templateUrl: 'views/contact.tmpl.html',
+			controller: 'CustomerQueryController',
+			controllerAs: 'customerQueriesVm'
 			
-		}
-
-		reservationsVm.showReservationByConfCode = function(){
-			console.log("SHOW"+reservationsVm.reservations.confirmationcode);
-			reservationService.getReservationByConfirmationCode(reservationsVm.reservations.confirmationcode).then(function(data) {
-				reservationsVm.reservation = data;
-				$rootScope.showReservation = true;
-				$rootScope.modifyReservation = false;
-				$rootScope.deleteMessage = false;
-				$rootScope.editConfirm = false;
-				reservationsVm.reservations.confirmationcode = null;
-			}, function(err) {
-				console.log(err);
-			});
-		}
-
-		reservationsVm.modifyReservationByConfCode = function(){
-			console.log("modify"+reservationsVm.reservations.confirmationcode);
-			reservationService.getReservationByConfirmationCode(reservationsVm.reservations.confirmationcode).then(function(data) {
-				reservationsVm.reservation = data;
-				$rootScope.showReservation = false;
-				$rootScope.modifyReservation = true;
-				$rootScope.deleteMessage = false;
-				$rootScope.editConfirm = false;
-			}, function(err) {
-				console.log(err);
-			});
-		};
-
-		reservationsVm.updateReservationByCustomers = function(){
-			console.log("Update reservation confirmation code");
-			console.log(reservationsVm.reservation.confirmationcode);
-			console.log("Update reservation function DATA");
-			console.log(reservationsVm.reservations.reservation);
-			var confCode= reservationsVm.reservation.confirmationcode; 
-			reservationService.updateReservationByCustomer(confCode,reservationsVm.reservations.reservation)
-			.then(function(data) {
-				console.log("UPDATE CONTROLLER Reservation");
-				console.log(data);
-				reservationsVm.updatedReservation = data;
-				reservationsVm.reservations.reservation=null;
-				reservationsVm.reservations.confirmationcode = null;
-				$rootScope.showReservation = false;
-				$rootScope.modifyReservation = false;
-				$rootScope.deleteMessage = false;
-				$rootScope.editConfirm = true;
-			}, function(err) {
-				console.log("ERROR");
-				console.log(err);
-			});
-		}
-
-		reservationsVm.deleteReservationByConfCode = function(){
-			console.log("Delete"+reservationsVm.reservations.confirmationcode);
-			reservationService.deleteReservation(reservationsVm.reservations.confirmationcode).then(function(data) { 	
-				reservationsVm.reservation = data;
-				$rootScope.showReservation = false;
-				$rootScope.modifyReservation = false;
-				$rootScope.deleteMessage = true;
-				$rootScope.editConfirm = false;
-				reservationsVm.reservations.confirmationcode = null;
-			}, function(err) {
-				console.log(err);
-			});
-		};
-
-
-		reservationsVm.addReservationByOwner = function(){
-			console.log("Add reservation function");
-			console.log(reservationsVm.reservations.reservation); 
-			reservationService.addReservationByOwner(reservationsVm.reservations.reservation).then(function(data) {
-				reservationsVm.newConfcode = data.confirmationcode;
-				$rootScope.confirmation = true;
-				$rootScope.makeReservation = false;	
-					reservationsVm.reservations.reservation = null;
+		})
+		.state('owner',{
+			url: '/owner',
+			templateUrl: 'views/owner-login.tmpl.html',
+			controller: 'OwnerLoginController',
+			controllerAs: 'loginVm',
+			hideMenus: true
+			
+		})
+		.state('access',{
+			url: '/access',
+			templateUrl: 'views/owner-access-only.tmpl.html',
+		
+		})
+		.state('access.all',{
+			url: '/access.all',
+			templateUrl:'views/reservations-grid.tmpl.html',
+			controller: 'ReservationsController',
+			controllerAs: 'reservationsVm'
+		})
 				
-			}, function(err) {
-				console.log(err);
-			});	
-		}
-
-		reservationsVm.addReservationByCustomers = function(){
-			alert("Confirm");
-			console.log("Add reservation function");
-			console.log(reservationsVm.reservations.reservation); 
-			reservationService.addReservationByCustomers(reservationsVm.reservations.reservation).then(function(data) {
-				reservationsVm.newConfcode = data.confirmationcode;
-				$rootScope.confirmation = true;
-				$rootScope.makeReservation = false;
-				reservationsVm.reservations.reservation = null;
-			}, function(err) {
-				console.log(err);
-			});
-		}   
+		.state('access.table',{
+			url: '/access.table',
+			templateUrl:'views/tables-grid.tmpl.html',
+			controller: 'TablesController',
+			controllerAs: 'tablesVm'
+		})
+		
+		.state('access.make',{
+			url: '/access.make',
+			templateUrl:'views/make-reservation-owner.tmpl.html',
+			controller: 'CustomerQueryController',
+			controllerAs: 'customerQueriesVm'
+		})
+		
+		.state('access.edit',{
+			url: '/access.edit',
+			templateUrl:'views/show-reservations.tmpl.html',
+			controller: 'CustomerQueryController',
+			controllerAs: 'customerQueriesVm'
+		})
+		
+		.state('access.query',{
+			url: '/access.query',
+			templateUrl:'views/show-contact-queries.tmpl.html',
+			controller: 'CustomerQueryController',
+			controllerAs: 'customerQueriesVm'
+		})
 	}
-	
-	
+
+
 })();
 

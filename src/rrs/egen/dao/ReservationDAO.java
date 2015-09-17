@@ -16,14 +16,6 @@ import rrs.egen.util.DBUtils;
 public class ReservationDAO {
 
 
-	public static int randInt(int min, int max) {
-
-		Random rand = new Random();
-		int randomNum = rand.nextInt((max - min) + 1) + min;
-		return randomNum;
-	}
-
-
 	public List<Reservation> getAllReservations() throws AppException{
 
 		List<Reservation> reservation = new ArrayList<Reservation>();

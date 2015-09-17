@@ -1,0 +1,22 @@
+<div data-ng-controller="ReservationsController as reservationsVm">
+<section >
+	<div data-ng-include="'views/search-confirmation-code.tmpl.html'"></div>
+</section>
+
+<section data-ng-show="reservationsVm.showReservation">
+	<div data-ng-include="'views/reservation-by-confcode.tmpl.html'"></div>
+</section>
+
+<section data-ng-show="reservationsVm.modifyReservation">
+	<div data-ng-include="'views/modify-reservation-customers.tmpl.html'"></div>
+</section>
+
+<section data-ng-show="reservationsVm.deleteMessage">
+	<h1>Reservation Deleted</h1>
+	<h2>Your Reservation was successfully deleted.</h2>
+</section>
+
+<section data-ng-show="reservationsVm.editConfirm">
+	<div data-ng-include="'views/new-old-reservation-details.tmpl.html'"></div>
+</section>
+</div>

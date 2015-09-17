@@ -28,6 +28,11 @@ body{
     margin-right: 2%;
     padding:auto;
 }
+
+.logout{
+    float:right;
+}
+
 .footer{
 
     background-color: #000000;
@@ -223,13 +228,13 @@ body{
 
 
 
-.text .quote{
+.text .heading{
     font-size: 150%;
     color: #35393e;
     font-weight: bold;
     font-family: Helvetica;
 }
-.text .author{
+.text .subheading{
     font-size: 110%;
     color: #35393e;
     font-style: italic;

@@ -1,0 +1,47 @@
+<form class="form-horizontal" name="updateResStatus" novalidate>
+	<div class="form-group">
+		<label for="inputStatus" class="col-sm-2 control-label">Status</label>
+		<div class="col-sm-6">
+			<input type="text" pattern="/confirmed|waiting/ig" name="status"
+				id="inputStatus"
+				data-ng-model="reservationsVm.reservations.reservation.status"
+				class="form-control" type="text" placeholder="Enter Status.." />
+<div ng-messages="updateResStatus.status.$error"
+			ng-if="updateResStatus.status.$dirty">
+
+			<p ng-message="pattern">Enter 'confirmed' or 'waiting'</p>
+		</div>
+		</div>
+		
+	</div>
+	<div class="form-group">
+		<label for="inputTable" class="col-sm-2 control-label">TableId</label>
+		<div class="col-sm-6">
+			<input type="number" max=10 min=1 name="tableid" id="inputTable"
+				data-ng-model="reservationsVm.reservations.reservation.tableId"
+				class="form-control" type="number" placeholder="Enter Table #.." />
+				<div ng-messages="updateResStatus.tableid.$error"
+			ng-if="updateResStatus.tableid.$dirty">
+			<p ng-message="min">Max Table Id is 10</p>
+			<p ng-message="min">Table Id starts from 1</p>
+		</div>
+		</div>
+		
+	</div>
+	<div class="form-group">
+		<div class="col-sm-offset-1 col-sm-8">
+			<button type="button" class="btn btn-primary btn-sm"
+				data-ng-disabled="updateResStatus.$invalid"
+				data-ng-click="reservationsVm.updateResvnStatus()">Update</button>
+
+		</div>
+
+	</div>
+
+</form>
+
+
+
+
+
+

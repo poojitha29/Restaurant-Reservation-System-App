@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import rrs.egen.exception.AppException;
+import rrs.egen.model.Reservation;
 import rrs.egen.model.Table;
 import rrs.egen.util.DBUtils;
 
@@ -21,15 +22,16 @@ public class TableDAO {
 		Connection conn = DBUtils.connect();
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-
+		Reservation reserv = new Reservation();
 		try {
-			ps = conn.prepareStatement("SELECT * FROM tables");
+			ps = conn.prepareStatement("SELECT tables.tableId,tables.seatingCapacity, reservations.status FROM tables INNER JOIN reservations WHERE tables.tableId=reservations.tableId");
 			rs = ps.executeQuery();
 
 			while(rs.next()){
 				Table tab = new Table();
 				tab.setTableId(rs.getInt("tableId"));
 				tab.setSeatingCapacity(rs.getInt("seatingCapacity"));
+				tab.setStatus(rs.getString("status"));
 				
 
 

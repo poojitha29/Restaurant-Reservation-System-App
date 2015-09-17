@@ -8,6 +8,7 @@ import java.util.*;
 
 import rrs.egen.exception.AppException;
 import rrs.egen.model.Customer;
+import rrs.egen.model.Owner;
 import rrs.egen.util.DBUtils;
 
 public class CustomerDAO {
@@ -45,7 +46,39 @@ public class CustomerDAO {
 		return customer;
 	}
 
+	public List<Customer> getAllCustomerQueries() throws AppException{
 
+		List<Customer> customer = new ArrayList<Customer>();
+
+		Connection conn = DBUtils.connect();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+
+		try {
+			ps = conn.prepareStatement("SELECT * FROM  customerqueries");
+			rs = ps.executeQuery();
+
+			while(rs.next()){
+				Customer cust = new Customer();
+				
+				cust.setFullname(rs.getString("fullname"));
+				cust.setPhone(rs.getDouble("phone"));
+				cust.setEmail(rs.getString("email"));
+				cust.setComments(rs.getString("comments"));
+				
+				customer.add(cust);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw new AppException(e.getMessage(),e.getCause());
+		}
+		finally{
+			DBUtils.closeConnection(ps, rs, conn);
+		}
+
+		return customer;
+	}
 
 	public Customer customerQueries(Customer cust) throws AppException{
 
@@ -62,11 +95,8 @@ public class CustomerDAO {
 						
 			ps.executeUpdate();
 			
-			rs = ps.getGeneratedKeys();
-			if(rs.next()){
-				cust.setCustomerId(rs.getInt(1));
-			}
-
+			ps.getGeneratedKeys();
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -74,14 +104,6 @@ public class CustomerDAO {
 		}finally{
 			DBUtils.closeConnection(ps, rs, conn);
 		}
-
-
 		return cust;
 	}
-	
-	
-
-	
-
-
 }
