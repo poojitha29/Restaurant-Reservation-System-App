@@ -1,0 +1,28 @@
+<div >
+	<h1>Owner Login</h1>
+	<h2 class="underline"></h2>
+
+	<!-- <div ng-show="error" class="alert alert-danger">{{error}}</div> -->
+	<form class="form-horizontal" ng-submit="loginVm.getLoginCredentials()" name="form">
+		<div class="form-group">
+			<label for="inputEmail" class="col-sm-2 control-label">Username</label>
+			<div class="col-sm-6">
+				<input type="text" ng-model="loginVm.credentials.username" name="username"	class="form-control" id="inputEmail" placeholder="Enter your username " required>
+				<span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Username is required</span>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="inputPassword" class="col-sm-2 control-label">Password</label>
+			<div class="col-sm-6">
+				<input type="password" ng-model="loginVm.credentials.password"	class="form-control" id="inputPassword" name="password" placeholder="Enter your Password"/>
+					<span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Password is required</span>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-offset-1 col-sm-8">
+				<button type="submit" class="btn btn-primary" >Login</button>
+			</div>
+		</div>
+	</form>
+</div>
+<br>

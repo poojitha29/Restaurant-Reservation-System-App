@@ -1,0 +1,42 @@
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+        <script type="text/javascript">
+
+        function Card() {
+        	this.id=10;
+            this.name = 'Bob';
+            this.phone = '1234567';
+        }
+
+        angular.module('myApp', []);
+
+        angular.module('myApp').controller('CustomerCardController', function ($scope) {
+            $scope.cards = [];
+
+            $scope.addCard = function() {
+                $scope.cards.push(new Card());
+            };
+        });
+
+        angular.module('myApp').directive('myCard', function(){
+            return {
+                restrict: 'AE',
+                template: '<div>{{aCard.name}} {{aCard.name}} {{aCard.phone}}</div>',
+                replace: true,
+                transclude: false,
+                scope: {
+                    aCard: '=myCard'
+                }
+            };
+        });
+        </script>
+    </head>
+    <body ng-app="myApp">
+        <div ng-controller="CustomerCardController">
+        	
+            <button ng-click="addCard()">Add new card</button>
+            <div ng-repeat="card in cards" my-card="card"></div>
+        </div>
+    </body>
+</html>

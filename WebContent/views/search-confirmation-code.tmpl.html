@@ -1,0 +1,33 @@
+<div >
+<form class="form-horizontal" novalidate name="searchForm">
+	<div class="form-group">
+		<label for="inputCode" class="col-sm-2 control-label">Confirmation
+			Code</label>
+		<div class="col-sm-6">
+			<input type="text"
+				name="search"
+				data-ng-model="reservationsVm.reservations.confirmationcode"
+				minlength="6"
+				class="form-control" id="inputCode"
+				placeholder="Enter your Confirmation code (Required)" required/>
+		</div>
+		<div ng-messages="searchForm.search.$error" ng-if="searchForm.search.$dirty">
+		<p ng-message="required">Confirmation code is required</p>
+		<p ng-message="minlength">Enter 6 digit confirmation code</p>
+		
+		</div>
+	</div>
+
+	<div class="form-group">
+		<div class="col-sm-offset-1 col-sm-8">
+			<button type="submit" name="show" ng-disabled="searchForm.$invalid" class="btn btn-primary"
+				data-ng-click="reservationsVm.showReservationByConfCode()">Show</button>
+			<button type="submit" name="modify" ng-disabled="searchForm.$invalid" class="btn btn-primary"
+				data-ng-click="reservationsVm.modifyReservationByConfCode()">Edit</button>
+			<button type="submit" name="delete" ng-disabled="searchForm.$invalid" class="btn btn-primary"
+				data-ng-click="reservationsVm.deleteReservationByConfCode()">Delete</button>
+		</div>
+	</div>
+</form>
+
+</div>

@@ -1,0 +1,41 @@
+<form class="form-horizontal">
+    
+    <div class="form-group">
+        <label for="inputDate" class="col-sm-2 control-label">Date</label>
+        <div class="col-sm-6">
+            <input type="text" pattern= "^([1-3][0-9]{3,3})-(0?[1-9]|1[0-2])-(0?[1-9]|[1-2][1-9]|3[0-1])$" data-ng-model="reservationsVm.reservations.reservation.date" class="form-control" id="inputDate" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputTime" class="col-sm-2 control-label">Time</label>
+        <div class="col-sm-6">
+            <input type="text" placeholder="hh:mm:ss" data-ng-model="reservationsVm.reservations.reservation.time" class="form-control" id="inputTime"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputSize" class="col-sm-2 control-label">Party Size</label>
+        <div class="col-sm-6">
+            <input type="number" data-ng-model="reservationsVm.reservations.reservation.partysize" class="form-control" id="inputSize" placeholder="# of Guests">
+        </div>
+    </div>
+
+	<div class="form-group">
+        <label for="inputDate" class="col-sm-2 control-label">Comments</label>
+        <div class="col-sm-6">
+            <textarea  data-ng-model="reservationsVm.reservations.reservation.comments" class="form-control" id="inputDate" ></textarea>
+        </div>
+    </div>
+    <div class="form-group">
+
+        <div class="col-sm-offset-1 col-sm-8">
+            <button type="submit" class="btn btn-primary" ng-click="reservationsVm.updateReservationByCustomers()">Modify</button>
+            <button type="submit" class="btn btn-primary" ng-click="reservationsVm.clear()">Clear</button>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-1 col-sm-8">
+
+        </div>
+    </div>
+
+</form>

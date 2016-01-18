@@ -1,0 +1,25 @@
+
+<div class="row" ng-controller="CustomerController as customersVm">
+	<section>
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>Fullname</th>
+					<th>Phone</th>
+					<th>Email</th>
+					<th>Comments</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr data-ng-repeat=" query in customersVm.queries">
+					<td>{{query.fullname}}</td>
+					<td>{{query.phone}}</td>
+					<td>{{query.email}}</td>
+					<td>{{query.comments}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</section>
+
+</div>
+

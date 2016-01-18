@@ -1,0 +1,26 @@
+
+<div class="form-group logout">
+	<div class="col-sm-offset-1 col-sm-8 ">
+		<button type="submit" class="btn btn-primary"
+			ng-click="logout()">Logout</button>
+	</div>
+</div>
+<h1>Owner</h1>
+<h2 class="underline"></h2>
+
+<section>
+<div class="container" id="home">
+		<ul  class="nav nav-tabs nav-justified">
+			<li ui-sref-active="active" class="active"><a ui-sref="access.all">All Reservations</a></li>
+			<li ui-sref-active="active" class="active"><a ui-sref="access.table" >Table View</a></li>
+			<li ui-sref-active="active" class="active"><a ui-sref="access.make">Make a Reservation </a></li>
+			<li ui-sref-active="active" class="active"><a ui-sref="access.edit" >Edit/ Delete</a></li>
+			<li ui-sref-active="active" class="active"><a ui-sref="access.query">Customer Queries </a></li>
+		</ul>		
+		<p class="transparent">Fill in following information</p>	
+		<div ui-view></div>
+</div>
+	
+					
+</section>
+

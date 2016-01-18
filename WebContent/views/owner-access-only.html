@@ -1,0 +1,109 @@
+
+<!DOCTYPE html>
+<html ng-app="angularApp">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Restaurant: Reservation</title>
+
+<link rel="stylesheet" href="../css/style.css">
+
+<link rel="stylesheet"
+	href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+<link href='http://fonts.googleapis.com/css?family=Cookie'
+	rel='stylesheet' type='text/css'>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+<script type="text/ng-template" id="search-template">
+        <input type="search" ng-model = "reservationsVm.search" class = "form-control" placeholder = "Enter text to search..."/>
+    </script>
+</head>
+
+<body>
+
+	<aside class="sidebar-left">
+
+		<a class="company-logo" href="../index.html"><img
+			src="../images/logo.png" alt="logo" /></a>
+
+		<div class="sidebar-links">
+			<a class="" href="../index.html">Home</a> <a class=""
+				href="../views/reservation.html">Reservation</a> <a class=" "
+				href="../views/contact.html">Contact</a> <a class="selected"
+				href="../views/owner.html">Owner</a>
+		</div>
+	</aside>
+
+	<div class="main-content"
+		data-ng-controller="ReservationsController as reservationsVm">
+
+		<div class="content">
+
+
+			<h1>Owner</h1>
+			<h2 class="underline"></h2>
+			<section>
+				<div class="container" id="home">
+					<ul class="nav nav-tabs nav-justified">
+						<li class="active"><a href="#tab-all" data-toggle="tab">All
+								Reservations</a></li>
+						<li><a href="#tab-table" data-toggle="tab">Table view</a></li>
+						<li><a href="#tab-reserve" data-toggle="tab">Make a
+								Reservation</a></li>
+						<li><a href="#tab-modify" data-toggle="tab">Modify or
+								Cancel </a></li>
+
+					</ul>
+
+					<div id="content" class="tab-content">
+
+						<div class="tab-pane active" id="tab-all">
+							<section class="content">
+								
+								<div data-ng-include="'reservations-grid.tmpl.html'"></div>
+							</section>
+						</div>
+						<div class="tab-pane " id="tab-table">
+							<section class="contact content">
+								<div data-ng-include="'tables-grid.tmpl.html'"></div>
+							</section>
+
+						</div>
+						<div class="tab-pane " id="tab-reserve">
+							<section class="contact">
+								<div data-ng-include="'make-reservation-owner.tmpl.html'"></div>
+							</section>
+						</div>
+						<div class="tab-pane" id="tab-modify">
+                        <section class="contact content" >
+                            <div data-ng-include="'show-reservation-customer.tmpl.html'"></div>
+                        </section>
+	                </div>
+					</div>
+				</div>
+			</section>
+
+
+
+		</div>
+
+	</div>
+
+	<div class="footer">Copyright © 2015</div>
+
+	<script src="https://code.angularjs.org/1.4.4/angular.js"></script>
+	<script src="https://code.angularjs.org/1.4.4/angular-messages.js"></script>
+	<script	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<script src="../app/app.js"></script>
+	<script src="../app/services/reservation.service.js"></script>
+</body>
+
+</html>

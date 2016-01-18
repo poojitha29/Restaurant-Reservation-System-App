@@ -1,0 +1,130 @@
+<div>
+	<section data-ng-show="makeReservation">
+		<form class="form-horizontal" name="makeResrv" novalidate>
+			<div class="form-group">
+				<label for="inputName" class="col-sm-2 control-label">Full
+					Name</label>
+				<div class="col-sm-6">
+					<input type="text" name="fullname" pattern="^\w+\s+\w+$"
+						data-ng-model="createReservationsVm.reservations.reservation.fullname"
+						class="form-control" id="inputName"
+						placeholder="Enter your Full name(Firstname Lastname)" required>
+				</div>
+				<div ng-messages="makeResrv.fullname.$error"
+					ng-if="makeResrv.fullname.$dirty">
+					<p ng-message="required">Name is required</p>
+					<p ng-message="pattern">You need to enter Firstname and
+						Lastname</p>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="inputSize" class="col-sm-2 control-label">Party
+					size</label>
+				<div class="col-sm-6">
+					<input type="number" min="1" max="12" name="partysize"
+						class="form-control"
+						data-ng-model="createReservationsVm.reservations.reservation.partysize"
+						id="inputSize" placeholder="# of Guests" required>
+				</div>
+				<div ng-messages="makeResrv.partysize.$error"
+					ng-if="makeResrv.partysize.$dirty">
+					<p ng-message="required">Party size is required</p>
+					<p ng-message="min">Min party size is 1</p>
+					<p ng-message="max">Max party size is 12</p>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="inputDate" class="col-sm-2 control-label">Date</label>
+				<div class="col-sm-6">
+					<input type="text" name="date" min="2015-09-17" max=""
+						placeholder="YYYY-MM-DD"
+						pattern="^([1-3][0-9]{3,3})-(0?[1-9]|1[0-2])-(0?[1-9]|[1-2][1-9]|3[0-1])$"
+						class="form-control"
+						data-ng-model="createReservationsVm.reservations.reservation.date"
+						id="inputDate" required />
+				</div>
+				<div ng-messages="makeResrv.date.$error"
+					ng-if="makeResrv.date.$dirty">
+					<p ng-message="required">Date is required</p>
+					<p ng-message="min">Date is older than todays date</p>
+					<p ng-message="pattern">Enter date in YYYY-MM-DD pattern</p>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="inputTime" class="col-sm-2 control-label">Time</label>
+				<div class="col-sm-6">
+					<input type="text" name="time" placeholder="hh:mm:ss"
+						pattern="^(?:[01]\d|2[0123]):(?:[012345]\d):(?:[012345]\d)$"
+						class="form-control"
+						data-ng-model="createReservationsVm.reservations.reservation.time"
+						id="inputTime" required />
+				</div>
+				<div ng-messages="makeResrv.time.$error"
+					ng-if="makeResrv.time.$dirty">
+					<p ng-message="required">Time is required</p>
+					<p ng-message="pattern">Enter time in HH:MM:SS pattern</p>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="inputPhone" class="col-sm-2 control-label">Phone
+					no.</label>
+				<div class="col-sm-6">
+					<input type="number" name="phone" pattern="^\d{10}$"
+						data-ng-model="createReservationsVm.reservations.reservation.phone"
+						class="form-control" id="inputPhone"
+						placeholder="Enter your Phone number." required>
+				</div>
+				<div ng-messages="makeResrv.phone.$error"
+					ng-if="makeResrv.phone.$dirty">
+					<p ng-message="required">Phone number is required</p>
+					<p ng-message="pattern">Enter 10 digit phone number</p>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="inputEmail" class="col-sm-2 control-label">Email</label>
+				<div class="col-sm-6">
+					<input type="email" name="email" class="form-control"
+						id="inputEmail"
+						data-ng-model="createReservationsVm.reservations.reservation.email"
+						placeholder="Enter you Email(example@domain.com)" required>
+				</div>
+				<div ng-messages="makeResrv.email.$error"
+					ng-if="makeResrv.email.$dirty">
+					<p ng-message="required">Email is required</p>
+					<p ng-message="email">Enter valid email</p>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="inputNote" class="col-sm-2 control-label">Comments</label>
+				<div class="col-sm-6">
+					<textarea class="form-control" name="comments" id="inputNote"
+						data-ng-model="createReservationsVm.reservations.reservation.comments"
+						placeholder="Comments/ notes (Optional)"></textarea>
+				</div>
+
+			</div>
+			<div class="form-group">
+				<div class="col-sm-offset-1 col-sm-8">
+					<button type="submit" class="btn btn-primary"
+						data-ng-disabled="makeResrv.$invalid"
+						data-ng-click="createReservationsVm.addReservationByCustomers()">Make
+						Reservation</button>
+				</div>
+
+			</div>
+		</form>
+
+	</section>
+
+	<section data-ng-show="confirmation">
+		<h1>Confirmation</h1>
+
+		<h2>
+			Your Confirmation Code is <strong>{{createReservationsVm.newConfcode}}</strong>.
+		</h2>
+		<button type="submit" class="btn btn-primary"
+			data-ng-click="createReservationsVm.makeAnotherReservation()">Make
+			another Reservation</button>
+
+	</section>
+</div>

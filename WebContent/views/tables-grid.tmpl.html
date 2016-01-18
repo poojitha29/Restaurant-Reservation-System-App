@@ -1,0 +1,23 @@
+
+<div class="row" ng-controller="TablesController as tablesVm">
+	<section>
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>TableId</th>
+					<th>Size</th>
+					<th>Status</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr data-ng-repeat=" table in tablesVm.tables">
+					<td>{{table.tableId}}</td>
+					<td>{{table.seatingCapacity}}</td>
+					<td>{{table.status}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</section>
+
+</div>
+

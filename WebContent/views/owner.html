@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html ng-app="angularApp">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Restaurant: Owner</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <link href='http://fonts.googleapis.com/css?family=Cookie' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+</head>
+
+<body>
+
+<aside class="sidebar-left">
+
+    <a class="company-logo" href="../index.html"><img src="../images/logo.png" alt="logo"/></a>
+
+    <div class="sidebar-links">
+        <a class="link-blue" href="../index.html">Home</a>
+        <a class="link-red " href="reservation.html">Reservation</a>
+        <a class="link-yellow " href="contact.html">Contact</a>
+        <a class="selected" href="owner.html">Owner</a>
+    </div>
+</aside>
+
+<div class="main-content" data-ng-controller="ReservationsController as reservationsVm">
+
+    <div class="content">
+
+
+        <h1>Owner Login</h1>
+        <h2 class="underline"></h2>
+
+        <section class="contact content" >
+ 				<div ng-include="'owner-login.tmpl.html'"></div>
+
+        </section>
+
+
+
+    </div>
+
+</div>
+
+<div class="footer">
+    Copyright © 2015
+</div>
+
+<script src="https://code.angularjs.org/1.4.4/angular.js"></script>
+<script src="https://code.angularjs.org/1.4.4/angular-messages.js"></script><script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="../app/controllers/owner-login.controller.js"></script>
+<script src="../app/services/owner-login.services.js"></script>
+
+
+</body>
+
+</html>

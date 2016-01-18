@@ -1,0 +1,82 @@
+
+					<h1>Restaurant</h1>
+					<h2 class="underline"></h2>
+					<p>
+						<strong>357 Castro St Mountain View, CA 94041</strong>
+					</p>
+					<div class="map">
+						<iframe
+							src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3169.9220531705178!2d-122.0799188!3d37.391675599999985!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808fb7339417edbb%3A0x2bd07646ded9197e!2s357+Castro+St%2C+Mountain+View%2C+CA+94041!5e0!3m2!1sen!2sus!4v1440410420027"
+							style="border: 0"></iframe>
+					</div>
+					<h2 class="underline"></h2>
+
+				</div>
+			</section>
+
+			<section class="contact content">
+				<form class="form-horizontal" name="contactForm" novalidate>
+					<div class="form-group">
+						<label for="inputFullname3" class="col-sm-2 control-label">Name</label>
+						<div class="col-sm-6">
+							<input type="text"
+								ng-model="customerQueriesVm.queries.query.fullname"
+								pattern="^\w+\s+\w+$"
+								class="form-control" id="inputFullname3" name="fullname"
+								placeholder="Enter your Full name">
+						</div>
+						<div ng-messages="contactForm.fullname.$error"
+							ng-if="contactForm.fullname.$dirty">
+
+							<p ng-message="pattern">You need to enter Firstname and
+								Lastname</p>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputPhone3" class="col-sm-2 control-label">Phone
+							no.</label>
+						<div class="col-sm-6">
+							<input type="number" name="phone" pattern="^\d{10}$"
+								ng-model="customerQueriesVm.queries.query.phone"
+								class="form-control" id="inputPhone3"
+								placeholder="Enter your Phone number.">
+						</div>
+						<div ng-messages="contactForm.phone.$error"
+							ng-if="contactForm.phone.$dirty">
+
+							<p ng-message="pattern">Enter 10 digit phone number</p>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+						<div class="col-sm-6">
+							<input type="email" name="email"
+								ng-model="customerQueriesVm.queries.query.email"
+								class="form-control" id="inputEmail3"
+								placeholder="Enter you Email(example@domain.com)">
+						</div>
+						<div ng-messages="contactForm.email.$error"
+							ng-if="contactForm.email.$dirty">
+
+							<p ng-message="email">Enter valid email</p>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputPassword3" class="col-sm-2 control-label">Comments</label>
+						<div class="col-sm-6">
+							<textarea ng-model="customerQueriesVm.queries.query.comments"
+								class="form-control" id="inputPassword3"
+								placeholder="Enter Comments (Optional)"></textarea>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="col-sm-offset-1 col-sm-8">
+							<button type="submit" class="btn btn-primary"
+								ng-click="customerQueriesVm.addCustomerQuery()">Send</button>
+						</div>
+					</div>
+				</form>
+
+
+	
